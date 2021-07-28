@@ -1,2 +1,2 @@
 # PMon-5G
-Criação de sistema de monitoramento para a alocação das funções de rádio virtualizadas com base na solução PlaceRAN.
+This project intends to develop a monitoring system for the allocation of virtualized radio functions based on the PlaceRAN solution.
