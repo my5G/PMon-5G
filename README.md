@@ -5,6 +5,7 @@ This project intends to develop a monitoring system for virtualized radio functi
  	- [Operational System](#operational-system)
 	- [Kernel Prerequisites](#kernel-prerequisites)
 	- [Xen Configuration](#xen-configuration)
+	- [Another requirements](#another-requirements)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -24,6 +25,14 @@ sudo apt install linux-headers-5.4.0-81-lowlatency linux-image-unsigned-5.4.0-81
 Reboot your machine and, on the GRUB page, choose that you want to boot the system using the newly installed kernel. Check kernel version with ```uname -r```
 
 ### Xen Configuration
+In this work we use the Xen hypervisor. To install it do:
+
+```
+sudo apt install xen-hypervisor-4.6-amd64 xen-tools
+```
+
+Then, reboot your machine to load the hypervisor. For more specific details visit the [Xen documentation page](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
+### Another Requirements
 
 
 
