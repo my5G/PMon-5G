@@ -35,14 +35,20 @@ sudo apt update
 sudo apt install xen-hypervisor-4.6-amd64 xen-tools
 ```
 
-Then, reboot your machine to load the hypervisor. For more specific details visit the [Xen documentation page](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
+Then, reboot your machine to load the hypervisor. For more specific details visit the [Xen documentation page](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices).
 
 ### Another Requirements
 
 Install the following dependencies to finish setting up the environment
 
 ```
+sudo apt update
+```
+
+```
 sudo apt install python net-tools unzip python-pip iproute2 openvswitch-switch openssh-server curl git
+```
+```
 sudo pip install paramiko networkx
 ```
 
