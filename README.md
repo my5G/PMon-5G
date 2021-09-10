@@ -6,6 +6,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Kernel Prerequisites](#kernel-prerequisites)
 	- [Xen Configuration](#xen-configuration)
 	- [Another requirements](#another-requirements)
+- [Downloading the VM's images](#downloading-the-vm's-images)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -50,5 +51,20 @@ sudo apt install python net-tools unzip python-pip iproute2 openvswitch-switch o
 ```
 ```
 sudo pip install paramiko networkx
+```
+
+## Cloning this repository
+Clone this repository on your machine using:
+
+```
+git clone 
+```
+
+## Downloading the VM's images
+Before starting the experiment, we must download the main image that serves as the source for the creation of the virtual machines that will be used.
+To do this, get inside the repository you've just cloned and in the XenVM/ directory give the following command:
+
+```
+sh VMDownloader.sh
 ```
 
