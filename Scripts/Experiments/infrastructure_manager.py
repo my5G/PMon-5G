@@ -29,23 +29,23 @@ def deploy_infrastructure(emul_type, fileADir):
 		user = data["user"]
 
 		dir_path = os.path.dirname(os.path.realpath(__file__))
-		dir_path = dir_path[:-18]
+		dir_path = dir_path[:-20]
 
 		os.system ("mkdir {}/{}".format(dir_path, user))
 
-		#resultsdir = '/home/expran/results'
+		resultsdir = '/home/expran/results'
 
-		#if(os.path.isdir(resultsdir)!= 1):
-		#	os.system ("mkdir -m 777 {}".format(resultsdir))
+		if(os.path.isdir(resultsdir)!= 1):
+			os.system ("mkdir -m 777 {}".format(resultsdir))
 
-		#if(emul_type == "video"):
+		if(emul_type == "video"):
 
-		#	expdir = '/home/expran/expran_temp'
+			expdir = '/home/expran/expran_temp'
 
-		#	if(os.path.isdir(expdir)!= 1):
-		#		os.system ("mkdir -m 777 {}".format(expdir))
-		#		os.system ("cp interface_default.txt {}".format(expdir))
-		#		os.system ("cp find_interface.py {}".format(expdir))
+			if(os.path.isdir(expdir)!= 1):
+				os.system ("mkdir -m 777 {}".format(expdir))
+				os.system ("cp interface_default.txt {}".format(expdir))
+				os.system ("cp find_interface.py {}".format(expdir))
 
 		directory = "{}/{}/".format(dir_path, user)
 

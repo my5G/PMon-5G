@@ -40,42 +40,6 @@
                ]
             }
          ]
-      },
-      {
-         "nodeNumber":3,
-         "nodeType":"DU",
-         "vms":[
-            {
-               "vmNumber":3,
-               "cpu":1,
-               "ram":1024,
-               "containers":[
-                  {
-                     "ctnNumber":3,
-                     "cpu":0.9,
-                     "ram":512
-                  }
-               ]
-            }
-         ]
-      },
-      {
-         "nodeNumber":4,
-         "nodeType":"RU",
-         "vms":[
-            {
-               "vmNumber":4,
-               "cpu":1,
-               "ram":1024,
-               "containers":[
-                  {
-                     "ctnNumber":4,
-                     "cpu":0.9,
-                     "ram":512
-                  }
-               ]
-            }
-         ]
       }
    ],
    "links":[
