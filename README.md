@@ -6,6 +6,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Kernel Prerequisites](#kernel-prerequisites)
 	- [Xen Configuration](#xen-configuration)
 	- [Another requirements](#another-requirements)
+- [Downloading the VM's images](#downloading-the-vm's-images)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
