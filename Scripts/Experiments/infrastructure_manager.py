@@ -101,24 +101,24 @@ def deploy_infrastructure(emul_type, fileADir):
 					memory = vm["ram"]
 
 					#cloning standard disk to new VM
-					os.system("cp {}/XenVM/expran-disk {}{}-expdisk{}".format(dir_path, directory, user, vm["vmNumber"]))
+					os.system("cp {}/XenVM/pmon-disk {}{}-expdisk{}".format(dir_path, directory, user, vm["vmNumber"]))
 					
 					#cloning standard swap disk to new VM
-					os.system("cp {}/XenVM/expran-swap {}{}-expswap{}".format(dir_path, directory, user, vm["vmNumber"]))
+					os.system("cp {}/XenVM/pmon-swap {}{}-expswap{}".format(dir_path, directory, user, vm["vmNumber"]))
 					
 					#editing the cfg file for the new VM
 					CPU_string = "vcpus = '1'"
 					RAM_string = "memory = '1024'"
-					disk_string = "disk = ['file:/dados/PMon5G/XenVM/expran-disk,xvda2,w','file:/dados/PMon5G/XenVM/expran-swap,xvda1,w',]"
-					hostname_string = "name = 'expran'"
-					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch, bridge=br-pmon']"
+					disk_string = "disk = ['file:/home/karlla/PMon-5G/XenVM/pmon-disk,xvda2,w','file:/home/karlla/PMon-5G/XenVM/pmon-swap,xvda1,w',]"
+					hostname_string = "name = 'pmon'"
+					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch, bridge=br_internet']"
 
 
-					file = "{}/XenVM/expran.cfg".format(dir_path)
+					file = "{}/XenVM/pmon.cfg".format(dir_path)
 
 					with open(file, "r") as old_cfg:
 
-						with open("{}/exp{}_{}.cfg".format(directory, node["nodeNumber"], vm["vmNumber"]), "w+") as new_cfg:
+						with open("{}/pmon{}_{}.cfg".format(directory, node["nodeNumber"], vm["vmNumber"]), "w+") as new_cfg:
 							
 							for line in old_cfg:
 
@@ -129,10 +129,10 @@ def deploy_infrastructure(emul_type, fileADir):
 									new_cfg.write(line.replace(RAM_string, "memory = '{}'".format(memory)))
 
 								elif(line.rstrip() == disk_string):
-									new_cfg.write(line.replace(disk_string, "disk = ['phy:{}{}-expdisk{},xvda2,w','phy:{}{}-expswap{},xvda1,w',]".format(directory, user, vm["vmNumber"], directory, user, vm["vmNumber"])))
+									new_cfg.write(line.replace(disk_string, "disk = ['phy:{}{}-pmondisk{},xvda2,w','phy:{}{}-pmonswap{},xvda1,w',]".format(directory, user, vm["vmNumber"], directory, user, vm["vmNumber"])))
 
 								elif(line.rstrip() == hostname_string):
-									new_cfg.write(line.replace(hostname_string, "name = '{}-exp{}'".format(user, vm["vmNumber"])))
+									new_cfg.write(line.replace(hostname_string, "name = '{}-pmon{}'".format(user, vm["vmNumber"])))
 
 								elif(line.rstrip() == bridge_string):
 									#new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}' ]".format(node["nodeNumber"])))
