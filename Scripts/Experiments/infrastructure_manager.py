@@ -54,7 +54,7 @@ def deploy_infrastructure(emul_type, fileADir):
 		os.system("ovs-vsctl add-br br-exp-ran && ifconfig br-exp-ran 0 && ifconfig br-exp-ran 169.254.0.1/16")
 
 		#Creating bridge and enabling internet access.
-		os.system("ovs-vsctl add-br br-pmon && ifconfig br-pmon up && ovs-vsctl add-port br-pmon br_internet && ifconfig br_internet 0 && dhclient br-pmon")
+		#os.system("ovs-vsctl add-br br-pmon && ifconfig br-pmon up && ovs-vsctl add-port br-pmon br-pmon && ifconfig br-pmon 0 && dhclient br-pmon")
 		
 		
 
@@ -111,7 +111,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					RAM_string = "memory = '1024'"
 					disk_string = "disk = ['file:/home/karlla/PMon-5G/XenVM/pmon-disk,xvda2,w','file:/home/karlla/PMon-5G/XenVM/pmon-swap,xvda1,w',]"
 					hostname_string = "name = 'pmon'"
-					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch, bridge=br-pmon']"
+					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'bridge=br_internet']"
 
 
 					file = "{}/XenVM/pmon.cfg".format(dir_path)
