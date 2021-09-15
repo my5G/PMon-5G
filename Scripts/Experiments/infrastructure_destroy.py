@@ -28,7 +28,7 @@ def destroy_infra(user_del, fileADir):
 				vms = node["vms"]
 
 				for vm in vms:
-					os.system("xl -f destroy {}-exp{} >/dev/null 2>&1".format(user, vm["vmNumber"]))
+					os.system("xl -f destroy {}-pmon{} >/dev/null 2>&1".format(user, vm["vmNumber"]))
 
 				os.system("ip link del sw-pt{} >/dev/null 2>&1".format(node["nodeNumber"]))
 		   		os.system("ip link del tor-pt{} >/dev/null 2>&1".format(node["nodeNumber"]))
