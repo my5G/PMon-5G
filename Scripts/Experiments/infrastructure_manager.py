@@ -202,7 +202,7 @@ def deploy_infrastructure(emul_type, fileADir):
 
 				for vm in vms:
 
-					os.system("xl create {}exp{}_{}.cfg".format(directory, node["nodeNumber"], vm["vmNumber"]))
+					os.system("xl create {}pmon{}_{}.cfg".format(directory, node["nodeNumber"], vm["vmNumber"]))
 					time.sleep(15)
 
 					print ("VM_{}_{} created".format(node["nodeNumber"], vm["vmNumber"]))
