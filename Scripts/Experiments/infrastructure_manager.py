@@ -136,7 +136,7 @@ def deploy_infrastructure(emul_type, fileADir):
 
 								elif(line.rstrip() == bridge_string):
 									#new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}' ]".format(node["nodeNumber"])))
-									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'script=vif-openvswitch, bridge=br-pmon']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
+									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'bridge=br_internet']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
 								else:
 									new_cfg.write(line)
 
