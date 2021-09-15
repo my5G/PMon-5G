@@ -54,7 +54,7 @@ def deploy_infrastructure(emul_type, fileADir):
 		os.system("ovs-vsctl add-br br-exp-ran && ifconfig br-exp-ran 0 && ifconfig br-exp-ran 169.254.0.1/16")
 
 		#Creating bridge and enabling internet access.
-		#os.system("ovs-vsctl add-br br-pmon && ifconfig br-pmon up && ovs-vsctl add-port br-pmon enp0s31f6 && ifconfig enp0s31f6 0 && dhclient br-pmon")
+		os.system("ovs-vsctl add-br br-pmon && ifconfig br-pmon up && ovs-vsctl add-port br-pmon br_internet && ifconfig br_internet 0 && dhclient br-pmon")
 		
 		
 
@@ -111,7 +111,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					RAM_string = "memory = '1024'"
 					disk_string = "disk = ['file:/home/karlla/PMon-5G/XenVM/pmon-disk,xvda2,w','file:/home/karlla/PMon-5G/XenVM/pmon-swap,xvda1,w',]"
 					hostname_string = "name = 'pmon'"
-					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'bridge=br_internet']"
+					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch, bridge=br-pmon']"
 
 
 					file = "{}/XenVM/pmon.cfg".format(dir_path)
@@ -136,7 +136,7 @@ def deploy_infrastructure(emul_type, fileADir):
 
 								elif(line.rstrip() == bridge_string):
 									#new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}' ]".format(node["nodeNumber"])))
-									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'bridge=br_internet']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
+									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'script=vif-openvswitch, bridge=br-pmon']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
 								else:
 									new_cfg.write(line)
 
