@@ -101,10 +101,10 @@ def deploy_infrastructure(emul_type, fileADir):
 					memory = vm["ram"]
 
 					#cloning standard disk to new VM
-					os.system("cp {}/XenVM/pmon-disk {}{}-expdisk{}".format(dir_path, directory, user, vm["vmNumber"]))
+					os.system("cp {}/XenVM/pmon-disk {}{}-pmondisk{}".format(dir_path, directory, user, vm["vmNumber"]))
 					
 					#cloning standard swap disk to new VM
-					os.system("cp {}/XenVM/pmon-swap {}{}-expswap{}".format(dir_path, directory, user, vm["vmNumber"]))
+					os.system("cp {}/XenVM/pmon-swap {}{}-pmonswap{}".format(dir_path, directory, user, vm["vmNumber"]))
 					
 					#editing the cfg file for the new VM
 					CPU_string = "vcpus = '1'"
