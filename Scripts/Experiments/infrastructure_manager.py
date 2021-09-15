@@ -111,7 +111,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					RAM_string = "memory = '1024'"
 					disk_string = "disk = ['file:/home/karlla/PMon-5G/XenVM/pmon-disk,xvda2,w','file:/home/karlla/PMon-5G/XenVM/pmon-swap,xvda1,w',]"
 					hostname_string = "name = 'pmon'"
-					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch, bridge=br_internet']"
+					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'bridge=br_internet']"
 
 
 					file = "{}/XenVM/pmon.cfg".format(dir_path)
@@ -136,7 +136,7 @@ def deploy_infrastructure(emul_type, fileADir):
 
 								elif(line.rstrip() == bridge_string):
 									#new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}' ]".format(node["nodeNumber"])))
-									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'script=vif-openvswitch, bridge=br_internet']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
+									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'bridge=br_internet']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
 								else:
 									new_cfg.write(line)
 
