@@ -209,7 +209,7 @@ def deploy_infrastructure(emul_type, fileADir):
 
 					VMip = '169.254.0.2'
 					Node_VM = "_" + str(node["nodeNumber"]) + "_" + str(vm["vmNumber"]) + "_"
-					Num_Final_IP = [260, cont]
+					Num_Final_IP = [60, cont]
 					Node_IP = str(sum(Num_Final_IP))
 
 					ssh = paramiko.SSHClient()
