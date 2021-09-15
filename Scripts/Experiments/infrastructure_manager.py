@@ -54,7 +54,7 @@ def deploy_infrastructure(emul_type, fileADir):
 		os.system("ovs-vsctl add-br br-exp-ran && ifconfig br-exp-ran 0 && ifconfig br-exp-ran 169.254.0.1/16")
 
 		#Creating bridge and enabling internet access.
-		os.system("ovs-vsctl add-br br-pmon && ifconfig br-pmon up && ovs-vsctl add-port br-pmon enp0s31f6 && ifconfig enp0s31f6 0 && dhclient br-pmon")
+		#os.system("ovs-vsctl add-br br-pmon && ifconfig br-pmon up && ovs-vsctl add-port br-pmon enp0s31f6 && ifconfig enp0s31f6 0 && dhclient br-pmon")
 		
 		
 
@@ -136,7 +136,7 @@ def deploy_infrastructure(emul_type, fileADir):
 
 								elif(line.rstrip() == bridge_string):
 									#new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}' ]".format(node["nodeNumber"])))
-									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'script=vif-openvswitch, bridge=br-pmon']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
+									new_cfg.write(line.replace(bridge_string, "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'script=vif-openvswitch,bridge=tor{}', 'script=vif-openvswitch, bridge=br_internet']".format(node["nodeNumber"])))#the br-pmon bridge needs to be in the last position, so it can be attached to the eth2 inside the VM's
 								else:
 									new_cfg.write(line)
 
@@ -209,14 +209,14 @@ def deploy_infrastructure(emul_type, fileADir):
 
 					VMip = '169.254.0.2'
 					Node_VM = "_" + str(node["nodeNumber"]) + "_" + str(vm["vmNumber"]) + "_"
-					Num_Final_IP = [30, cont]
+					Num_Final_IP = [60, cont]
 					Node_IP = str(sum(Num_Final_IP))
 
 					ssh = paramiko.SSHClient()
 					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 					ssh.connect(VMip, username='root', password='necos')
 					stdin, stdout, stderr = ssh.exec_command('ovs-vsctl add-br VM{}SWC && ovs-vsctl add-br VM{}SWD && ifconfig VM{}SWC 0 && ifconfig VM{}SWD 0 && python net_config.py {} {} && ifconfig VM{}SWC 169.254.{}.{}/16 && ifconfig VM{}SWD 172.16.{}.{}/16 && ovs-vsctl add-port VM{}SWC eth0 && ifconfig eth0 0 && ovs-vsctl add-port VM{}SWD eth1 && ifconfig eth1 0 && systemctl restart networking'.format(Node_VM, Node_VM, Node_VM, Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, Node_VM))
-					stdin, stdout, stderr = ssh.exec_command('ifconfig eth2 192.168.100.{} netmask 255.255.255.0 && route add default gw 192.168.100.1 && dhclient eth2'.format(Node_IP)) #commands to bring up the interface that talks to the internet from the br-pmon bridge
+					stdin, stdout, stderr = ssh.exec_command('ifconfig eth2 200.137.197.{} netmask 255.255.255.0 && route add default gw 200.137.197.1 && dhclient eth2'.format(Node_IP)) #commands to bring up the interface that talks to the internet from the br-pmon bridge
 					
 					stdin, stdout, stdrr = ssh.exec_command('sysctl -w net.ipv6.conf.all.disable_ipv6=1')
 					stdin, stdout, stdrr = ssh.exec_command('sysctl -w net.ipv6.conf.default.disable_ipv6=1')
