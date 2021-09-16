@@ -222,6 +222,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					stdin, stdout, stdrr = ssh.exec_command('sysctl -w net.ipv6.conf.default.disable_ipv6=1')
 					stdin, stdout, stdrr = ssh.exec_command('ssh-keygen -R 169.254.0.1')
 					ssh.close()
+					print("I CREATED THE VM")
 
 					#Opening another SSH session to bring down the control plane.
 					VMip = '169.254.{}.{}'.format(node["nodeNumber"], vm["vmNumber"])
@@ -230,6 +231,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					ssh.connect(VMip, username='root', password='necos')
 					stdin, stdout, stderr = ssh.exec_command('ifconfig VM{}SWC down && ovs-vsctl del-br VM{}SWC'.format(Node_VM, Node_VM))
 					ssh.close()
+					print("I TOOK DOWN THE CONTROL LINE")
 					
 			cont += 1
 
