@@ -1,6 +1,6 @@
 #!/bin/bash
-fileid="1HfzV2kBwXdGKGcJGnOtwaADhXtcn0yt5"
-filename="copy-vm-image.zip"
+fileid="1SF6A7tdrjqnpJqOSWyjfQZzgrIAorgiE"
+filename="vm-image.zip"
 
 curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}" > /dev/null
 
