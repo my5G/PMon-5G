@@ -6,7 +6,7 @@ curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}
 
 curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${fileid}" -o ${filename}
 
-unzip ${filename}
+jar xvf ${filename}
 
 mv expran-disk pmon-disk
 mv expran-swap pmon-swap
