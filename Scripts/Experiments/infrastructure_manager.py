@@ -211,6 +211,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					Node_VM = "_" + str(node["nodeNumber"]) + "_" + str(vm["vmNumber"]) + "_"
 					Num_Final_IP = [60, cont]
 					Node_IP = str(sum(Num_Final_IP))
+					print("I AM NODE {}".format(node["nodeNumber"]))
 
 					ssh = paramiko.SSHClient()
 					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
