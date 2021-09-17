@@ -217,7 +217,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 					ssh.connect(VMip, username='root', password='necos')
 					stdin, stdout, stderr = ssh.exec_command('ovs-vsctl add-br VM{}SWC && ovs-vsctl add-br VM{}SWD && ifconfig VM{}SWC 0 && ifconfig VM{}SWD 0 && python net_config.py {} {} && ifconfig VM{}SWC 169.254.{}.{}/16 && ifconfig VM{}SWD 172.16.{}.{}/16 && ovs-vsctl add-port VM{}SWC eth0 && ifconfig eth0 0 && ovs-vsctl add-port VM{}SWD eth1 && ifconfig eth1 0 && systemctl restart networking'.format(Node_VM, Node_VM, Node_VM, Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, Node_VM))
-					stdin, stdout, stderr = ssh.exec_command('ifconfig eth2 200.137.197.{} netmask 255.255.255.0 && route add default gw 200.137.197.1 && dhclient eth2'.format(Node_IP)) #commands to bring up the interface that talks to the internet from the br-pmon bridge
+					#stdin, stdout, stderr = ssh.exec_command('ifconfig eth2 200.137.197.{} netmask 255.255.255.0 && route add default gw 200.137.197.1 && dhclient eth2'.format(Node_IP)) #commands to bring up the interface that talks to the internet from the br-pmon bridge
 					
 					stdin, stdout, stdrr = ssh.exec_command('sysctl -w net.ipv6.conf.all.disable_ipv6=1')
 					stdin, stdout, stdrr = ssh.exec_command('sysctl -w net.ipv6.conf.default.disable_ipv6=1')
@@ -226,13 +226,13 @@ def deploy_infrastructure(emul_type, fileADir):
 					print("I CREATED THE VM {}".format(node["nodeNumber"]))
 
 					#Opening another SSH session to bring down the control plane.
-					VMip = '169.254.{}.{}'.format(node["nodeNumber"], vm["vmNumber"])
-					ssh = paramiko.SSHClient()
-					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-					ssh.connect(VMip, username='root', password='necos')
-					stdin, stdout, stderr = ssh.exec_command('ifconfig VM{}SWC down && ovs-vsctl del-br VM{}SWC'.format(Node_VM, Node_VM))
-					ssh.close()
-					print("I TOOK DOWN THE CONTROL LINE".format(node["nodeNumber"]))
+					#VMip = '169.254.{}.{}'.format(node["nodeNumber"], vm["vmNumber"])
+					#ssh = paramiko.SSHClient()
+					#ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+					#ssh.connect(VMip, username='root', password='necos')
+					#stdin, stdout, stderr = ssh.exec_command('ifconfig VM{}SWC down && ovs-vsctl del-br VM{}SWC'.format(Node_VM, Node_VM))
+					#ssh.close()
+					#print("I TOOK DOWN THE CONTROL LINE".format(node["nodeNumber"]))
 					
 			cont += 1
 
