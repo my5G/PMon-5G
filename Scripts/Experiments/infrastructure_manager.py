@@ -230,7 +230,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					ssh = paramiko.SSHClient()
 					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 					ssh.connect(VMip, username='root', password='necos')
-					stdin, stdout, stderr = ssh.exec_command('route add default gw 10.16.0.1'.format(Node_VM, Node_VM))
+					stdin, stdout, stderr = ssh.exec_command('route add default gw 10.16.0.1')
 					ssh.close()
 
 					#Opening another SSH session to bring down the control plane.
