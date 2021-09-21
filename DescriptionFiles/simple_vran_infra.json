@@ -12,14 +12,7 @@
             {
                "vmNumber":1,
                "cpu":1,
-               "ram":1024,
-               "containers":[
-                  {
-                     "ctnNumber":1,
-                     "cpu":0.5,
-                     "ram":512
-                  }
-               ]
+               "ram":1024
             }
          ]
       },
@@ -30,14 +23,7 @@
             {
                "vmNumber":2,
                "cpu":1,
-               "ram":1024,
-               "containers":[
-                  {
-                     "ctnNumber":2,
-                     "cpu":0.5,
-                     "ram":512
-                  }
-               ]
+               "ram":1024
             }
          ]
       },
@@ -48,14 +34,7 @@
             {
                "vmNumber":3,
                "cpu":1,
-               "ram":1024,
-               "containers":[
-                  {
-                     "ctnNumber":3,
-                     "cpu":0.5,
-                     "ram":512
-                  }
-               ]
+               "ram":1024
             }
          ]
       },
@@ -66,14 +45,7 @@
             {
                "vmNumber":4,
                "cpu":1,
-               "ram":1024,
-               "containers":[
-                  {
-                     "ctnNumber":4,
-                     "cpu":0.5,
-                     "ram":512
-                  }
-               ]
+               "ram":1024
             }
          ]
       }
