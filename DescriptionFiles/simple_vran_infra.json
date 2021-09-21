@@ -40,6 +40,24 @@
                ]
             }
          ]
+      },
+      {
+         "nodeNumber":3,
+         "nodeType":"DU",
+         "vms":[
+            {
+               "vmNumber":3,
+               "cpu":1,
+               "ram":1024,
+               "containers":[
+                  {
+                     "ctnNumber":3,
+                     "cpu":0.5,
+                     "ram":512
+                  }
+               ]
+            }
+         ]
       }
    ],
    "links":[
@@ -57,6 +75,13 @@
                "linkNumber":2,
                "fromNode":0,
                "toNode":2,
+               "delay":0.122,
+               "capacity":50.0
+            },
+            {
+               "linkNumber":3,
+               "fromNode":2,
+               "toNode":3,
                "delay":0.122,
                "capacity":50.0
             }
