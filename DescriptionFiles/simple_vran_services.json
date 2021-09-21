@@ -5,9 +5,9 @@
            {
               "flowIdentifier": 1,
               "bandwidth": 1,
-              "nodes": [1, 0, 2],
+              "nodes": [1, 0, 2, 3],
               "ctnSourceNum": 1,
-              "ctnTargetNum": 2
+              "ctnTargetNum": 3
            }
         ]
       }
