@@ -216,6 +216,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					ssh = paramiko.SSHClient()
 					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 					ssh.connect(VMip, username='root', password='necos')
+					stdin, stdout, stderr = ssh.exec_command('echo nameserver 8.8.8.8 > /etc/resolv.conf')
 					stdin, stdout, stderr = ssh.exec_command('ovs-vsctl add-br VM{}SWC && ovs-vsctl add-br VM{}SWD && ifconfig VM{}SWC 0 && ifconfig VM{}SWD 0 && python net_config.py {} {} && ifconfig VM{}SWC 169.254.{}.{}/16 && ifconfig VM{}SWD 172.16.{}.{}/16 && ovs-vsctl add-port VM{}SWC eth0 && ifconfig eth0 0 && ovs-vsctl add-port VM{}SWD eth1 && ifconfig eth1 0 && systemctl restart networking'.format(Node_VM, Node_VM, Node_VM, Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, node["nodeNumber"], vm["vmNumber"], Node_VM, Node_VM))
 					stdin, stdout, stderr = ssh.exec_command('ifconfig eth2 10.16.0.{} netmask 255.255.0.0'.format(Node_IP)) #commands to bring up the interface that talks to the internet from the br-pmon bridge
 					
