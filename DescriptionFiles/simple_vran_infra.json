@@ -37,17 +37,6 @@
                "ram":1024
             }
          ]
-      },
-      {
-         "nodeNumber":4,
-         "nodeType":"RU",
-         "vms":[
-            {
-               "vmNumber":4,
-               "cpu":1,
-               "ram":1024
-            }
-         ]
       }
    ],
    "links":[
@@ -72,13 +61,6 @@
                "linkNumber":3,
                "fromNode":2,
                "toNode":3,
-               "delay":0.122,
-               "capacity":50.0
-            },
-            {
-               "linkNumber":4,
-               "fromNode":3,
-               "toNode":4,
                "delay":0.122,
                "capacity":50.0
             }
