@@ -37,6 +37,17 @@
                "ram":1024
             }
          ]
+      },
+      {
+         "nodeNumber":4,
+         "nodeType":"RU",
+         "vms":[
+            {
+               "vmNumber":4,
+               "cpu":1,
+               "ram":1024
+            }
+         ]
       }
    ],
    "links":[
