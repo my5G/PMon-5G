@@ -74,6 +74,13 @@
                "toNode":3,
                "delay":0.122,
                "capacity":50.0
+            },
+            {
+               "linkNumber":4,
+               "fromNode":3,
+               "toNode":4,
+               "delay":0.122,
+               "capacity":50.0
             }
          ]
       }
