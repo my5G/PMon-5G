@@ -244,7 +244,7 @@ def deploy_infrastructure(emul_type, fileADir):
 					#print("I TOOK DOWN THE CONTROL LINE".format(node["nodeNumber"]))
 					
 			cont += 1
-
+		break
 
 #       #The container infraestructure created by eXP-RAN it is not necessary for us in PMon.
 #		for node in nodes:
