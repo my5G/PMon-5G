@@ -107,8 +107,8 @@ def deploy_infrastructure(emul_type, fileADir):
 					os.system("cp {}/XenVM/pmon-swap {}{}-pmonswap{}".format(dir_path, directory, user, vm["vmNumber"]))
 					
 					#editing the cfg file for the new VM
-					CPU_string = "vcpus = '1'"
-					RAM_string = "memory = '1024'"
+					CPU_string = "vcpus = '8'"
+					RAM_string = "memory = '16384'"
 					disk_string = "disk = ['file:/home/karlla/PMon-5G/XenVM/pmon-disk,xvda2,w','file:/home/karlla/PMon-5G/XenVM/pmon-swap,xvda1,w',]"
 					hostname_string = "name = 'pmon'"
 					bridge_string = "vif = ['script=vif-openvswitch, bridge=br-exp-ran', 'bridge=br_labora']"
