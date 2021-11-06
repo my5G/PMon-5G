@@ -57,7 +57,7 @@ sudo pip install paramiko networkx
 Clone this repository on your machine using:
 
 ```
-git clone 
+git clone https://github.com/LABORA-INF-UFG/PMon-5G.git
 ```
 
 ## Downloading the VM's images
