@@ -71,3 +71,9 @@ sh VMDownloader.sh
 ## Putting up the infrastructure
 Let's take a broader view of what happens in this part of the experiment.
 For the desired topology to be raised, there must be a file with information about the virtual machines and the links. This file is [simple_vran_infra.json](DescriptionFiles/simple_vran_infra.json). It is a customizable file that is passed as a parameter to start the experiment.
+Inside [Scripts/Experiments](Scripts/Experiments) use the following command:
+
+```
+sudo python emulation.py -e vran -i ../../DescriptionFiles/simple_vran_infra.json 
+```
+
