@@ -7,6 +7,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Xen Configuration](#xen-configuration)
 	- [Another requirements](#another-requirements)
 - [Downloading the VM's images](#downloading-the-vm's-images)
+- [Putting up the infrastructure](#putting-up-the-infrastructure)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -67,4 +68,6 @@ To do this, get inside the repository you've just cloned and inside [XenVM](XenV
 ```
 sh VMDownloader.sh
 ```
-
+## Putting up the infrastructure
+Let's take a broader view of what happens in this part of the experiment.
+For the desired topology to be raised, there must be a file with information about the virtual machines and the links. This file is [simple_vran_infra.json](DescriptionFiles/simple_vran_infra.json). It is a customizable file that is passed as a parameter to start the experiment.
