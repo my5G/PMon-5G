@@ -8,6 +8,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Another requirements](#another-requirements)
 - [Downloading the VM's images](#downloading-the-vm's-images)
 - [Putting up the infrastructure](#putting-up-the-infrastructure)
+- [Configuring Kubernetes](#configuring-kubernetes)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -84,4 +85,6 @@ To verify that your VM's exist, use the command:
 ```
 sudo xl list
 ```
+
+## Configuring Kubernetes
 
