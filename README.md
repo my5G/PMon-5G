@@ -62,7 +62,7 @@ git clone https://github.com/LABORA-INF-UFG/PMon-5G.git
 
 ## Downloading the VM's images
 Before starting the experiment, we must download the main image that serves as the source for the creation of the virtual machines that will be used.
-To do this, get inside the repository you've just cloned and in the XenVM/ directory give the following command:
+To do this, get inside the repository you've just cloned and inside [XenVM](XenVM/) directory give the following command:
 
 ```
 sh VMDownloader.sh
