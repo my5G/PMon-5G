@@ -77,3 +77,12 @@ Inside [Scripts/Experiments](Scripts/Experiments) use the following command:
 sudo python emulation.py -e vran -i ../../DescriptionFiles/simple_vran_infra.json 
 ```
 
+The ```-e``` parameter tells you what type of experiment, in this case a vRAN, and the ```-i``` tells you which file contains the topology information.
+The -e parameter tells you what type of experiment, in this case a vRAN, and the -i tells you which file contains the topology information.
+This part will take at least 25 minutes to complete and at the end four virtual machines will be up with the desired configurations.
+To verify that your VM's exist, use the command:
+
+```
+sudo xl list
+```
+
