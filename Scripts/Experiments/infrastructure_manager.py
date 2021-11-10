@@ -234,6 +234,15 @@ def deploy_infrastructure(emul_type, fileADir):
 					stdin, stdout, stderr = ssh.exec_command('route add default gw 10.16.0.1')
 					ssh.close()
 
+					#Opening another SSH session to clean firewall.
+					VMip = '169.254.{}.{}'.format(node["nodeNumber"], vm["vmNumber"])
+					ssh = paramiko.SSHClient()
+					ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+					ssh.connect(VMip, username='root', password='necos')
+					stdin, stdout, stderr = ssh.exec_command('sudo /sbin/iptables-restore < /etc/iptables/rules.v4')
+					stdin, stdout, stderr = ssh.exec_command('sudo /sbin/ip6tables-restore < /etc/iptables/rules.v6')
+					ssh.close()
+
 					#Opening another SSH session to bring down the control plane.
 					VMip = '169.254.{}.{}'.format(node["nodeNumber"], vm["vmNumber"])
 					ssh = paramiko.SSHClient()
