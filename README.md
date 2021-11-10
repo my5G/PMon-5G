@@ -129,5 +129,9 @@ sudo pip3 install -r requirements.txt
 ```
 cp -rfp inventory/sample inventory/mycluster
 ```
+* With the nano, change the version in kubernetes that will be used. In the ```kube_version``` parameter change from v1.22.2 to *v1.21.5*
 
+```
+nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+```
 
