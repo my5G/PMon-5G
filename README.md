@@ -96,9 +96,6 @@ sudo xl list
 
 In the experiment that we are exemplifying, we used the following figure as a basis for the topology:
 ![ScreenShot](https://github.com/LABORA-INF-UFG/PMon-5G/blob/main/vran_line_topology%20.jpg)
-<div align="center">
-<img src="https://github.com/LABORA-INF-UFG/PMon-5G/blob/main/vran_line_topology%20.jpg" width="593" height="451" >
-</div>
 
 ## Configuring Kubernetes
 
