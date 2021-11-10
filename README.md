@@ -95,7 +95,7 @@ sudo xl list
 ```
 
 In the experiment that we are exemplifying, we used the following figure as a basis for the topology:
-
+![Logo do Markdown](vran_line_topology.jpg)
 <div align="center">
 <img src="PMon-5G/vran_line_topology.jpg" width="593" height="451" >
 </div>
