@@ -16,7 +16,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Starting the Core](#starting-the-core)
 	- [Starting the Operator](#starting-the-operator)
 	- [Installing Dependencies](#installing-dependencies)
-	- [Starting the CU, DU and RU](#starting-cu-du-and-ru)
+	- [Starting the CU, DU and RU](#starting-the-cu-du-and-ru)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -232,7 +232,7 @@ kubectl apply -f deployment.yaml
 ```
 That simple :)
 
-### Installing Dependecies
+### Installing Dependencies
 
 To upload the other components of the RAN we need to install some dependencies. The first one is the **go**. Go back to the root directory and follow the steps below to install it:
 
