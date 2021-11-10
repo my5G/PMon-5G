@@ -16,6 +16,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Starting a Core](#startting-a-core)
 	- [Starting Operator](#starting-operator)
 	- [Installing Dependencies](#installing-dependencies)
+	- [Starting CU, DU and RU](#starting-cu-du-and-ru)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -226,3 +227,4 @@ kubectl apply -f core-deployment.yaml
 
 ### Installing Dependecies
 
+### Starting CU, DU and RU
