@@ -9,6 +9,8 @@ This project intends to develop a monitoring system for virtualized radio functi
 - [Downloading the VM's images](#downloading-the-vm's-images)
 - [Putting up the infrastructure](#putting-up-the-infrastructure)
 - [Configuring Kubernetes](#configuring-kubernetes)
+	- [Generate an SSH key](#generate-an-ssh-key)
+	- [Cloning and Configuring Kubespray](#cloning-and-configuring-kubespray)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -87,6 +89,8 @@ sudo xl list
 ```
 
 ## Configuring Kubernetes
+
+### Generate an SSH key
 The first step to start a cluster is to generate an SSH key and copy it to all machines that will be used in the experiment.
 
 ```
@@ -108,6 +112,22 @@ ssh-copy-id 172.16.3.3
 ```
 ```
 ssh-copy-id 172.16.4.4
+```
+
+### Cloning and Configuring Kubespray
+The second step is to clone and configure kubespray, a tool that helps deploy a kubernetes cluster.
+```
+git clone https://github.com/kubernetes-sigs/kubespray.git
+```
+After cloning, go into the kubespray directory and install all necessary dependencies with:
+
+```
+sudo pip3 install -r requirements.txt
+```
+Copy the sample file to create your own cluster:
+
+```
+cp -rfp inventory/sample inventory/mycluster
 ```
 
 
