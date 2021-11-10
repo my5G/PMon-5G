@@ -94,6 +94,10 @@ To verify that your VM's exist, use the command:
 sudo xl list
 ```
 
+<div align="center">
+<img src="" width="593" height="451" >
+</div>
+
 ## Configuring Kubernetes
 
 ### Generate an SSH key
