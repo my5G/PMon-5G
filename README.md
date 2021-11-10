@@ -234,4 +234,36 @@ That simple :)
 
 ### Installing Dependecies
 
+To upload the other components of the RAN we need to install some dependencies. The first one is the **go**. Go back to the root directory and follow the steps below to install it:
+
+```
+wget https://golang.org/dl/go1.14.15.linux-amd64.tar.gz
+```
+```
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.14.15.linux-amd64.tar.gz
+```
+```
+export PATH=$PATH:/usr/local/go/bin
+```
+```
+source $HOME/.profile
+```
+
+The next dependency is **kustomize**. Install it with:
+
+```
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+```
+```
+mv kustomize /usr/bin/
+```
+
+Go inside ```OPlaceRAN/k8s-operator/``` and:
+
+```
+make install
+```
+
+
+
 ### Starting the CU, DU and RU
