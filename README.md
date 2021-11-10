@@ -11,6 +11,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 - [Configuring Kubernetes](#configuring-kubernetes)
 	- [Generate an SSH key](#generate-an-ssh-key)
 	- [Cloning and Configuring Kubespray](#cloning-and-configuring-kubespray)
+- [Deploy MongoDB](#deploy-mongodb)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -160,26 +161,34 @@ Now let's deploy MongoDB so that we can store our data. Choose one of the nodes 
 
 Use the following commands:
 
-1. 
 ```
 wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | sudo apt-key add -
 ```
-2. 
+
 ```
 echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 ```
-3. 
+
 ```
 sudo apt update
 ```
-4. 
+
 ```
 sudo apt-get install -y mongodb-org
 ```
-5. 
+
 ```
 sudo systemctl start mongod
 ``` 
 
+After that modify the Mongo configuration file. In the parameter bindIp add, separating with a comma, the address of the node where you are installing MongoDB.
 
+```
+nano /etc/mongod.conf 
+```
+Restart the service with:
+
+```
+sudo sytemctl restart mongod
+```
 
