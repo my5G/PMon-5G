@@ -87,4 +87,27 @@ sudo xl list
 ```
 
 ## Configuring Kubernetes
+The first step to start a cluster is to generate an SSH key and copy it to all machines that will be used in the experiment.
+
+```
+ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
+```
+```
+ssh-copy-id <ip_for_your_machine>
+```
+In our case we use four VM's we have the following commands, as an example:
+
+```
+ssh-copy-id 172.16.1.1
+```
+```
+ssh-copy-id 172.16.2.2
+```
+```
+ssh-copy-id 172.16.3.3
+```
+```
+ssh-copy-id 172.16.4.4
+```
+
 
