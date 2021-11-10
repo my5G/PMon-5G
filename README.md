@@ -171,8 +171,7 @@ echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" | sud
 ```
 sudo apt update
 ```
-4. 
-```
+4. ```
 sudo apt-get install -y mongodb-org
 ```
 5. 
