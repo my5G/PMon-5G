@@ -142,6 +142,18 @@ declare -a IPS=(172.16.1.1 172.16.2.2 172.16.3.3 172.16.4.4)
 ```
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 ```
+* Finally, with ansible, we start the cluster installation:
+
+```
+ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
+```
+
+This installation will take around 30 minutes. After installation, check the nodes using:
+
+```
+kubectl get nodes
+```
+
 
 
 
