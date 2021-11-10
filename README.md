@@ -129,9 +129,19 @@ sudo pip3 install -r requirements.txt
 ```
 cp -rfp inventory/sample inventory/mycluster
 ```
-* With the nano, change the version in kubernetes that will be used. In the ```kube_version``` parameter change from v1.22.2 to *v1.21.5*
+* With the nano, change the version in kubernetes that will be used. In the ```kube_version``` parameter change from v1.22.2 to **v1.21.5**
 
 ```
 nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
+* Now we declare the IP addresses and update the ansible inventory file with the inventory builder:
+
+```
+declare -a IPS=(172.16.1.1 172.16.2.2 172.16.3.3 172.16.4.4)
+```
+```
+CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+```
+
+
 
