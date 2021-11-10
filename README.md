@@ -159,6 +159,7 @@ kubectl get nodes
 Now let's deploy MongoDB so that we can store our data. Choose one of the nodes that have just been instantiated and install the database inside it. In this experiment we chose node 1.
 
 Use the following commands:
+
 1. 
 ```
 wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | sudo apt-key add -
@@ -171,7 +172,8 @@ echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" | sud
 ```
 sudo apt update
 ```
-4. ```
+4. 
+```
 sudo apt-get install -y mongodb-org
 ```
 5. 
