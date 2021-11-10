@@ -94,6 +94,8 @@ To verify that your VM's exist, use the command:
 sudo xl list
 ```
 
+In the experiment that we are exemplifying, we used the following figure as a basis for the topology:
+
 <div align="center">
 <img src="" width="593" height="451" >
 </div>
