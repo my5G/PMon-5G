@@ -263,7 +263,29 @@ Go inside ```OPlaceRAN/k8s-operator/``` and:
 ```
 make install
 ```
-
+By this time, you'll have both the Core and Operator running at full speed. So, let's go to the next part!
 
 
 ### Starting the CU, DU and RU
+
+With the following command, you can view your pods and also see the IP of the Core pod. Write it down somewhere, as it will be needed.
+
+```
+kubectl get pods -o wide
+```
+Now, inside ```OPlaceRAN/k8s-operator/``` let's change the coreIP parameter to the address we copied in the previous step:
+
+```
+nano config/samples/ran_v1alpha1_randeployer.yaml
+```
+
+And finally start a complete chain with:
+
+```
+kubectl apply -f config/samples/ran_v1alpha1_randeployer.yaml
+```
+```
+make deploy
+```
+
+
