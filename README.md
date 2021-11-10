@@ -95,9 +95,9 @@ sudo xl list
 ```
 
 In the experiment that we are exemplifying, we used the following figure as a basis for the topology:
-
+![ScreenShot](/image.png)
 <div align="center">
-<img src="/vran_line_topology.jpg" width="593" height="451" >
+<img src="![ScreenShot](/image.png)" width="593" height="451" >
 </div>
 
 ## Configuring Kubernetes
