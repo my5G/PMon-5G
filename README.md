@@ -119,12 +119,12 @@ The second step is to clone and configure kubespray, a tool that helps deploy a 
 ```
 git clone https://github.com/kubernetes-sigs/kubespray.git
 ```
-After cloning, go into the kubespray directory and install all necessary dependencies with:
+* After cloning, go into the kubespray directory and install all necessary dependencies with:
 
 ```
 sudo pip3 install -r requirements.txt
 ```
-Copy the sample file to create your own cluster:
+* Copy the sample file to create your own cluster:
 
 ```
 cp -rfp inventory/sample inventory/mycluster
