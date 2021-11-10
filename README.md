@@ -11,7 +11,8 @@ This project intends to develop a monitoring system for virtualized radio functi
 - [Configuring Kubernetes](#configuring-kubernetes)
 	- [Generate an SSH key](#generate-an-ssh-key)
 	- [Cloning and Configuring Kubespray](#cloning-and-configuring-kubespray)
-- [Deploy MongoDB](#deploy-mongodb)
+- [MongoDB Deploy](#mongodb-deploy)
+- [Core Deploy](#core-deploy)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -155,7 +156,7 @@ This installation will take around 30 minutes. After installation, check the nod
 kubectl get nodes
 ```
 
-## Deploy MongoDB
+## MongoDB Deploy
 
 Now let's deploy MongoDB so that we can store our data. Choose one of the nodes that have just been instantiated and install the database inside it. In this experiment we chose node 1.
 
@@ -191,4 +192,30 @@ Restart the service with:
 ```
 sudo sytemctl restart mongod
 ```
+
+## Core Deploy
+
+Within the same node where MongoDB was installed, we will raise the RAN Core. To do this we will clone the OPlaceRAN project directory:
+
+```
+git clone https://github.com/my5G/OPlaceRAN.git
+```
+* Let's get into ```OPlaceRAN/images/core``` and tell the Core configuration file which address the database is running on. So we changed the **value** parameter to the IP where Mongo is:
+
+```
+nano core-deployment.yaml
+```
+* We then tag the node with the Core label:
+
+```
+kubectl label nodes node1 core=true
+```
+
+* And finally we start a Core:
+
+```
+kubectl apply -f core-deployment.yaml
+```
+
+
 
