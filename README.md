@@ -13,10 +13,10 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Cloning and Configuring Kubespray](#cloning-and-configuring-kubespray)
 - [MongoDB Deploy](#mongodb-deploy)
 - [Chain Deploy](#chain-deploy)
-	- [Starting a Core](#startting-a-core)
-	- [Starting Operator](#starting-operator)
+	- [Starting the Core](#starting-the-core)
+	- [Starting the Operator](#starting-the-operator)
 	- [Installing Dependencies](#installing-dependencies)
-	- [Starting CU, DU and RU](#starting-cu-du-and-ru)
+	- [Starting the CU, DU and RU](#starting-cu-du-and-ru)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -199,7 +199,7 @@ sudo sytemctl restart mongod
 
 ## Chain Deploy
 
-### Starting a Core
+### Starting the Core
 
 Within the same node where MongoDB was installed, we will raise the RAN Core. To do this we will clone the OPlaceRAN project directory:
 
@@ -223,8 +223,8 @@ kubectl label nodes node1 core=true
 kubectl apply -f core-deployment.yaml
 ```
 
-### Starting Operator
+### Starting the Operator
 
 ### Installing Dependecies
 
-### Starting CU, DU and RU
+### Starting the CU, DU and RU
