@@ -225,6 +225,13 @@ kubectl apply -f core-deployment.yaml
 
 ### Starting the Operator
 
+The operator is responsible for placing our Virtualized Network Functions (VNF's). To start it, let's go into ```OPlaceRAN/scheduler-manager/k8s``` and proceed with:
+
+```
+kubectl apply -f deployment.yaml
+```
+That simple :)
+
 ### Installing Dependecies
 
 ### Starting the CU, DU and RU
