@@ -264,8 +264,10 @@ mv kustomize /usr/bin/
 Go inside ```OPlaceRAN/k8s-operator/``` and:
 
 ```
-make install
+make install && make deploy
+
 ```
+
 By this time, you'll have both the Core and Operator running at full speed. So, let's go to the next part!
 
 
@@ -287,8 +289,3 @@ And finally start a complete chain with:
 ```
 kubectl apply -f config/samples/ran_v1alpha1_randeployer.yaml
 ```
-```
-make deploy
-```
-
-
