@@ -19,6 +19,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Starting the CU, DU and RU](#starting-the-cu-du-and-ru)
 -[Monitoring Metrics]
 	-[Prometheus Operator](#prometheus-operator)
+	-[Grafana](#grafana)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -296,7 +297,7 @@ kubectl apply -f config/samples/ran_v1alpha1_randeployer.yaml
 With all the parts configured, let's now move on to collecting and viewing the metrics.
 
 ### Prometheus Operator
-O Helm é uma ferramento que vai nos ajudar com o gerenciamento do nosso cluster kubernetes. Para instalá-lo e rodá-lo basta:
+Helm is a tool that will help us with managing our kubernetes cluster. To install and run it just:
 
 ```
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
@@ -305,3 +306,40 @@ chmod 700 get_helm.sh0
 
 ./get_helm.sh
 ```
+
+With the helm installed we can use it to add the Prometheus repository:
+
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+helm repo update
+```
+Now we create the namespace monitoring to organize our cluster and facilitate navigation:
+
+```
+kubectl create namespace monitoring
+
+kubectl config set-context --current --namespace=monitoring
+```
+And we installed the Prometheus operator:
+
+```
+helm install prometheus prometheus-community/kube-prometheus-stack
+```
+
+To check if the services are up, use: 
+
+```
+kubectl get services
+```
+
+Run this command to forward the port of Prometheus service to your localhost:
+
+```
+kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090
+```
+And finally go to https://localhost:9090 to check if the service is really working.
+
+### Grafana
+
+
