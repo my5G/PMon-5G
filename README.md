@@ -17,6 +17,8 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Starting the Operator](#starting-the-operator)
 	- [Installing Dependencies](#installing-dependencies)
 	- [Starting the CU, DU and RU](#starting-the-cu-du-and-ru)
+-[Monitoring Metrics]
+	-[Prometheus Operator](#prometheus-operator)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -288,4 +290,18 @@ And finally start a complete chain with:
 
 ```
 kubectl apply -f config/samples/ran_v1alpha1_randeployer.yaml
+```
+
+## Monitoring metrics
+With all the parts configured, let's now move on to collecting and viewing the metrics.
+
+### Prometheus Operator
+O Helm é uma ferramento que vai nos ajudar com o gerenciamento do nosso cluster kubernetes. Para instalá-lo e rodá-lo basta:
+
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+
+chmod 700 get_helm.sh0
+
+./get_helm.sh
 ```
