@@ -102,6 +102,9 @@ In the experiment that we are exemplifying, we used the following figure as a ba
 
 ## Configuring Kubernetes
 
+Choose one of the instantiated machines to be the master node and connect via SSH. The password is **necos**.
+Once inside, follow the other steps.
+
 ### Generate an SSH key
 The first step to start a cluster is to generate an SSH key and copy it to all machines that will be used in the experiment.
 
