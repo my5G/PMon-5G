@@ -390,4 +390,60 @@ spec:
   selector:
     k8s-app: calico-node
  ```
+After creating a file, create a service with file calico-felix-metrics-Service.yaml with this command:
+
+```
+kubectl apply -f calico-felix-metrics-Service.yaml
+```
+Now take a look at the new service created with this command:
+
+```
+kubectl get services --namespace=kube-system
+```
+Create a custom resource ServiceMonitor to configure a new endpoint to Prometheus scrape, in this case, to scrape calico. Create an empty file called something like calico-felix-metrics-ServiceMonitor.yaml e past de content below inside:
+
+```
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: calico-felix-metrics
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      monitoring: calico-felix
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  endpoints:
+  - port: metrics
+    relabelings:
+    - sourceLabels:
+      - __meta_kubernetes_endpoint_node_name
+      targetLabel: instance
+ ```
+ Now use this command to put up the service:
+ 
+ ```
+ kubectl apply -f calico-felix-metrics-ServiceMonitor.yaml
+ ```
+ 
+ and check it with:
+ 
+ ```
+ kubectl get servicemonitor
+ ```
+ 
+ * Now we are goingo to check if everything is fine also in the WebUI. Make the port forwarding again:
+
+```
+kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090
+```
+and acess https://locahost:9090
+
+Don't forget to port foward the Grafana's port too.
+ 
+
 
