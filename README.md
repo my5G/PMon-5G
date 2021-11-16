@@ -20,6 +20,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 - [Monitoring Metrics](#monitoring-metrics)
 	- [Prometheus Operator](#prometheus-operator)
 	- [Grafana](#grafana)
+	- [Monitor Calico with Prometheus Operator](#monitor-calico-with-prometheus-operator)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -344,5 +345,24 @@ kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090
 And finally go to https://localhost:9090 to check if the service is really working.
 
 ### Grafana
+Grafana's service has already been installed with Prometheus, so we just need to forward its port, as we did before with Prometheus:
 
+```
+kubectl port-forward deployment/prometheus-grafana 3000
+```
+And go to htts://localhost:3000. To login, the **user*** is ```admin``` and the **password** is ```prom-operator```.
 
+### Monitor Calico with Prometheus Operator
+
+* First, we switch to the kube-systemy namespace:
+
+```
+kubectl config set-context --current --namespace=kube-system
+```
+and change key FELIX_PROMETHEUSMETRICSENABLED to True in calico-node daemonset specs:
+
+```
+kubectl get daemonset calico-node -o json \
+    | jq '.spec.template.spec.containers[0].env[16].value = "True"' \
+    | kubectl replace -f -
+```
