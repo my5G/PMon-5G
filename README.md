@@ -17,9 +17,9 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Starting the Operator](#starting-the-operator)
 	- [Installing Dependencies](#installing-dependencies)
 	- [Starting the CU, DU and RU](#starting-the-cu-du-and-ru)
--[Monitoring Metrics](#monitoring-metrics)
-	-[Prometheus Operator](#prometheus-operator)
-	-[Grafana](#grafana)
+- [Monitoring Metrics](#monitoring-metrics)
+	- [Prometheus Operator](#prometheus-operator)
+	- [Grafana](#grafana)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
