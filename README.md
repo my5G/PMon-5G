@@ -366,3 +366,28 @@ kubectl get daemonset calico-node -o json \
     | jq '.spec.template.spec.containers[0].env[16].value = "True"' \
     | kubectl replace -f -
 ```
+Check teh Calico's metrics with:
+
+```
+curl -s localhost:9091/metrics
+```
+* Now we going to setup Prometheus to export Calico's metrics. Create an empty file called something like calico-felix-metrics-Service.yaml e past de content below inside. Note that since calico runs in the kube-system namespace, the service has to be created there too.
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: calico-felix-metrics
+  namespace: kube-system
+  labels:
+    monitoring: calico-felix
+spec:
+  clusterIP: None
+  ports:
+  - port: 9091
+    protocol: TCP 
+    name: metrics  
+  selector:
+    k8s-app: calico-node
+ ```
+
