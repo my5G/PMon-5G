@@ -242,7 +242,7 @@ def deploy_infrastructure(emul_type, fileADir):
                                         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                                         ssh.connect(VMip, username='root', password='necos')
                                         stdin, stdout, stderr = ssh.exec_command('iptables -P INPUT ACCEPT && iptables -P FORWARD ACCEPT && iptables -P OUTPUT ACCEPT')
-                                        stdin, stdout, stderr = ssh.exec_command('iptables -t nat -F && iptables -t mangle -F && iptables -F && iptables -X)
+                                        stdin, stdout, stderr = ssh.exec_command('iptables -t nat -F && iptables -t mangle -F && iptables -F && iptables -X')
                                         ssh.close()
                                         time.sleep(5)
 
