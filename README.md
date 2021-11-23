@@ -204,7 +204,7 @@ nano /etc/mongod.conf
 Restart the service with:
 
 ```
-sudo sytemctl restart mongod
+sudo systemctl restart mongod
 ```
 
 ## Chain Deploy
