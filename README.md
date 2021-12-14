@@ -14,6 +14,7 @@ This project intends to develop a monitoring system for virtualized radio functi
 - [MongoDB Deploy](#mongodb-deploy)
 - [Chain Deploy](#chain-deploy)
 	- [Starting the Core](#starting-the-core)
+	- [Recover some Mongo data](#recover-some-mongo-data)
 	- [Starting the Operator](#starting-the-operator)
 	- [Installing Dependencies](#installing-dependencies)
 	- [Starting the CU, DU and RU](#starting-the-cu-du-and-ru)
@@ -231,6 +232,13 @@ kubectl label nodes node1 core=true
 
 ```
 kubectl apply -f core-deployment.yaml
+```
+### Recover some Mongo data
+
+In order to have some amount of data for the process, we'll gonna use mongorestore to recover some previous information. Do it : 
+
+```
+mongorestore dump/
 ```
 
 ### Starting the Operator
