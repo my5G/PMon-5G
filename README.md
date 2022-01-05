@@ -374,12 +374,12 @@ kubectl get daemonset calico-node -o json \
     | jq '.spec.template.spec.containers[0].env[16].value = "True"' \
     | kubectl replace -f -
 ```
-Check teh Calico's metrics with:
+Check the Calico's metrics with:
 
 ```
 curl -s localhost:9091/metrics
 ```
-* Now we going to setup Prometheus to export Calico's metrics. Create an empty file called something like calico-felix-metrics-Service.yaml e past de content below inside. Note that since calico runs in the kube-system namespace, the service has to be created there too.
+* Now we going to setup Prometheus to export Calico's metrics. Create an empty file called something like calico-felix-metrics-Service.yaml and past the content below inside. Note that since calico runs in the kube-system namespace, the service has to be created there too.
 
 ```
 apiVersion: v1
@@ -408,7 +408,7 @@ Now take a look at the new service created with this command:
 ```
 kubectl get services --namespace=kube-system
 ```
-Create a custom resource ServiceMonitor to configure a new endpoint to Prometheus scrape, in this case, to scrape calico. Create an empty file called something like calico-felix-metrics-ServiceMonitor.yaml e past de content below inside:
+Create a custom resource ServiceMonitor to configure a new endpoint to Prometheus scrape, in this case, to scrape calico. Create an empty file called something like calico-felix-metrics-ServiceMonitor.yaml and past the content below inside:
 
 ```
 apiVersion: monitoring.coreos.com/v1
