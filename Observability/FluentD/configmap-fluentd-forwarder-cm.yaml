@@ -1,0 +1,172 @@
+apiVersion: v1
+data:
+  fluentd-inputs.conf: |
+    # HTTP input for the liveness and readiness probes
+    <source>
+      @type http
+      port 9880
+    </source>
+
+    # Get the logs from the containers running in the node
+    <source>
+      @type tail
+      path /var/log/containers/cu-*.log
+      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-cu.pos
+      tag kubernetes.*
+      read_from_head true
+      format json
+      time_format %Y-%m-%dT%H:%M:%S.%NZ
+      time_key time
+      keep_time_key true
+    </source>
+    <source>
+      @type tail
+      path /var/log/containers/du-*.log
+      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-du.pos
+      tag kubernetes.*
+      read_from_head true
+      format json
+      time_format %Y-%m-%dT%H:%M:%S.%NZ
+      time_key time
+      keep_time_key true
+    </source>
+    <source>
+      @type tail
+      path /var/log/containers/ru-*.log
+      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-ru.pos
+      tag kubernetes.*
+      read_from_head true
+      format json
+      time_format %Y-%m-%dT%H:%M:%S.%NZ
+      time_key time
+      keep_time_key true
+    </source>
+    <source>
+      @type tail
+      path /var/log/containers/core-*.log
+      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-core.pos
+      tag kubernetes.*
+      read_from_head true
+      format json
+      time_format %Y-%m-%dT%H:%M:%S.%NZ
+      time_key time
+      keep_time_key true
+    </source>
+
+    # enrich with kubernetes metadata
+    <filter kubernetes.**>
+      @type kubernetes_metadata
+    </filter>
+  fluentd-output.conf: |
+    # Throw the healthcheck to the standard output instead of forwarding it
+    <match fluentd.healthcheck>
+      @type null
+    </match>
+    # Forward all logs to the elasticsearch
+    <match kubernetes.var.log.containers.**core-**.log>
+      @type elasticsearch
+      include_tag_key true
+      host "elasticsearch-master.default.svc.cluster.local"
+      port "9200"
+      index_name "core-logs"
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/core-logs.buffer
+        flush_thread_count 2
+        flush_interval 5s
+      </buffer>
+    </match>
+
+    <match kubernetes.var.log.containers.**cu-**.log>
+      @type elasticsearch
+      include_tag_key true
+      host "elasticsearch-master.default.svc.cluster.local"
+      port "9200"
+      index_name "cu-logs"
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/cu-logs.buffer
+        flush_thread_count 2
+        flush_interval 5s
+      </buffer>
+    </match>
+    <match kubernetes.var.log.containers.**du-**.log>
+      @type elasticsearch
+      include_tag_key true
+      host "elasticsearch-master.default.svc.cluster.local"
+      port "9200"
+      index_name "du-logs"
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/du-logs.buffer
+        flush_thread_count 2
+        flush_interval 5s
+      </buffer>
+    </match>
+    <match kubernetes.var.log.containers.**ru-**.log>
+      @type elasticsearch
+      include_tag_key true
+      host "elasticsearch-master.default.svc.cluster.local"
+      port "9200"
+      index_name "ru-logs"
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/ru-logs.buffer
+        flush_thread_count 2
+        flush_interval 5s
+      </buffer>
+    </match>
+  fluentd.conf: |
+    # Ignore fluentd own events
+    <match fluent.**>
+      @type null
+    </match>
+
+    @include fluentd-inputs.conf
+    @include fluentd-output.conf
+  metrics.conf: |
+    # Prometheus Exporter Plugin
+    # input plugin that exports metrics
+    <source>
+      @type prometheus
+      port 24231
+    </source>
+    # input plugin that collects metrics from MonitorAgent
+    <source>
+      @type prometheus_monitor
+      <labels>
+        host #{hostname}
+      </labels>
+    </source>
+    # input plugin that collects metrics for output plugin
+    <source>
+      @type prometheus_output_monitor
+      <labels>
+        host #{hostname}
+      </labels>
+    </source>
+    # input plugin that collects metrics for in_tail plugin
+    <source>
+      @type prometheus_tail_monitor
+      <labels>
+        host #{hostname}
+      </labels>
+    </source>
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"fluentd-inputs.conf":"# HTTP input for the liveness and readiness probes\n\u003csource\u003e\n  @type http\n  port 9880\n\u003c/source\u003e\n\n# Get the logs from the containers running in the node\n\u003csource\u003e\n  @type tail\n  path /var/log/containers/cu-*.log\n  pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-cu.pos\n  tag kubernetes.*\n  read_from_head true\n  format json\n  time_format %Y-%m-%dT%H:%M:%S.%NZ\n  time_key time\n  keep_time_key true\n\u003c/source\u003e\n\u003csource\u003e\n  @type tail\n  path /var/log/containers/du-*.log\n  pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-du.pos\n  tag kubernetes.*\n  read_from_head true\n  format json\n  time_format %Y-%m-%dT%H:%M:%S.%NZ\n  time_key time\n  keep_time_key true\n\u003c/source\u003e\n\u003csource\u003e\n  @type tail\n  path /var/log/containers/ru-*.log\n  pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-ru.pos\n  tag kubernetes.*\n  read_from_head true\n  format json\n  time_format %Y-%m-%dT%H:%M:%S.%NZ\n  time_key time\n  keep_time_key true\n\u003c/source\u003e\n\u003csource\u003e\n  @type tail\n  path /var/log/containers/core-*.log\n  pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker-core.pos\n  tag kubernetes.*\n  read_from_head true\n  format json\n  time_format %Y-%m-%dT%H:%M:%S.%NZ\n  time_key time\n  keep_time_key true\n\u003c/source\u003e\n\n# enrich with kubernetes metadata\n\u003cfilter kubernetes.**\u003e\n  @type kubernetes_metadata\n\u003c/filter\u003e\n","fluentd-output.conf":"# Throw the healthcheck to the standard output instead of forwarding it\n\u003cmatch fluentd.healthcheck\u003e\n  @type null\n\u003c/match\u003e\n# Forward all logs to the elasticsearch\n\u003cmatch kubernetes.var.log.containers.**core-**.log\u003e\n  @type elasticsearch\n  include_tag_key true\n  host \"elasticsearch-master.default.svc.cluster.local\"\n  port \"9200\"\n  index_name \"core-logs\"\n  \u003cbuffer\u003e\n    @type file\n    path /opt/bitnami/fluentd/logs/buffers/core-logs.buffer\n    flush_thread_count 2\n    flush_interval 5s\n  \u003c/buffer\u003e\n\u003c/match\u003e\n\n\u003cmatch kubernetes.var.log.containers.**cu-**.log\u003e\n  @type elasticsearch\n  include_tag_key true\n  host \"elasticsearch-master.default.svc.cluster.local\"\n  port \"9200\"\n  index_name \"cu-logs\"\n  \u003cbuffer\u003e\n    @type file\n    path /opt/bitnami/fluentd/logs/buffers/cu-logs.buffer\n    flush_thread_count 2\n    flush_interval 5s\n  \u003c/buffer\u003e\n\u003c/match\u003e\n\u003cmatch kubernetes.var.log.containers.**du-**.log\u003e\n  @type elasticsearch\n  include_tag_key true\n  host \"elasticsearch-master.default.svc.cluster.local\"\n  port \"9200\"\n  index_name \"du-logs\"\n  \u003cbuffer\u003e\n    @type file\n    path /opt/bitnami/fluentd/logs/buffers/du-logs.buffer\n    flush_thread_count 2\n    flush_interval 5s\n  \u003c/buffer\u003e\n\u003c/match\u003e\n\u003cmatch kubernetes.var.log.containers.**ru-**.log\u003e\n  @type elasticsearch\n  include_tag_key true\n  host \"elasticsearch-master.default.svc.cluster.local\"\n  port \"9200\"\n  index_name \"ru-logs\"\n  \u003cbuffer\u003e\n    @type file\n    path /opt/bitnami/fluentd/logs/buffers/ru-logs.buffer\n    flush_thread_count 2\n    flush_interval 5s\n  \u003c/buffer\u003e\n\u003c/match\u003e\n","fluentd.conf":"# Ignore fluentd own events\n\u003cmatch fluent.**\u003e\n  @type null\n\u003c/match\u003e\n\n@include fluentd-inputs.conf\n@include fluentd-output.conf\n","metrics.conf":"# Prometheus Exporter Plugin\n# input plugin that exports metrics\n\u003csource\u003e\n  @type prometheus\n  port 24231\n\u003c/source\u003e\n# input plugin that collects metrics from MonitorAgent\n\u003csource\u003e\n  @type prometheus_monitor\n  \u003clabels\u003e\n    host #{hostname}\n  \u003c/labels\u003e\n\u003c/source\u003e\n# input plugin that collects metrics for output plugin\n\u003csource\u003e\n  @type prometheus_output_monitor\n  \u003clabels\u003e\n    host #{hostname}\n  \u003c/labels\u003e\n\u003c/source\u003e\n# input plugin that collects metrics for in_tail plugin\n\u003csource\u003e\n  @type prometheus_tail_monitor\n  \u003clabels\u003e\n    host #{hostname}\n  \u003c/labels\u003e\n\u003c/source\u003e\n"},"kind":"ConfigMap","metadata":{"annotations":{"meta.helm.sh/release-name":"fluentd","meta.helm.sh/release-namespace":"default"},"creationTimestamp":"2021-12-17T02:32:12Z","labels":{"app.kubernetes.io/component":"forwarder","app.kubernetes.io/instance":"fluentd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"fluentd","helm.sh/chart":"fluentd-4.4.1"},"name":"fluentd-forwarder-cm","namespace":"default","resourceVersion":"34978991","uid":"83b8b8a8-211d-40c7-af80-93065bc48a9b"}}
+    meta.helm.sh/release-name: fluentd
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2021-12-17T02:32:12Z"
+  labels:
+    app.kubernetes.io/component: forwarder
+    app.kubernetes.io/instance: fluentd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: fluentd
+    helm.sh/chart: fluentd-4.4.1
+  name: fluentd-forwarder-cm
+  namespace: default
+  resourceVersion: "34980389"
+  uid: 83b8b8a8-211d-40c7-af80-93065bc48a9b
