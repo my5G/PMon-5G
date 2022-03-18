@@ -1,5 +1,5 @@
 #!/bin/bash
-fileid="1SF6A7tdrjqnpJqOSWyjfQZzgrIAorgiE"
+fileid="14B1Gk2oDLEpreVmVfG9u6ac0uDNywSIG"
 filename="vm-image.zip"
 
 curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}" > /dev/null
