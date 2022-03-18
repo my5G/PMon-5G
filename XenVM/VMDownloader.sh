@@ -8,8 +8,8 @@ curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/do
 
 unzip ${filename}
 
-mv expran-disk pmon-disk
-mv expran-swap pmon-swap
+#mv expran-disk pmon-disk
+#mv expran-swap pmon-swap
 
 rm ${filename}
 rm cookie
