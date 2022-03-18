@@ -23,6 +23,8 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Grafana](#grafana)
 	- [Monitor Calico with Prometheus Operator](#monitor-calico-with-prometheus-operator)
 
+- [Observability Stack](#observability-stack)
+
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
 
