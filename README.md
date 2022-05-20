@@ -458,3 +458,4 @@ Don't forget to port foward the Grafana's port too.
  ## Observability Stack
 
 
+![ScreenShot](https://github.com/my5G/PMon-5G/blob/main/Extras/Images/observability-open-architecture.jpg)
