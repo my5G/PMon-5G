@@ -1,12 +1,12 @@
 # PMon-5G
-This project intends to develop a monitoring system for virtualized radio functions allocation based on the PlaceRAN solution.
+This project intends to proposed a monitoring system for virtualized radio functions allocation based on the PlaceRAN solution.
 
 - [Setting up the environment](#setting-up-the-environment)
  	- [Operational System](#operational-system)
 	- [Kernel Prerequisites](#kernel-prerequisites)
 	- [Xen Configuration](#xen-configuration)
 	- [Another requirements](#another-requirements)
-- [Downloading the VM's images](#downloading-the-vm's-images)
+- [Downloading the VMs images](#downloading-the-vms-images)
 - [Putting up the infrastructure](#putting-up-the-infrastructure)
 - [Configuring Kubernetes](#configuring-kubernetes)
 	- [Generate an SSH key](#generate-an-ssh-key)
@@ -22,6 +22,8 @@ This project intends to develop a monitoring system for virtualized radio functi
 	- [Prometheus Operator](#prometheus-operator)
 	- [Grafana](#grafana)
 	- [Monitor Calico with Prometheus Operator](#monitor-calico-with-prometheus-operator)
+
+- [Observability Stack](#observability-stack)
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -75,7 +77,7 @@ Clone this repository on your machine using:
 git clone https://github.com/LABORA-INF-UFG/PMon-5G.git
 ```
 
-## Downloading the VM's images
+## Downloading the VMs images
 Before starting the experiment, we must download the main image that serves as the source for the creation of the virtual machines that will be used.
 To do this, get inside the repository you've just cloned and inside [XenVM](XenVM/) directory give the following command:
 
@@ -453,5 +455,6 @@ and acess https://locahost:9090
 
 Don't forget to port foward the Grafana's port too.
  
+ ## Observability Stack
 
 
