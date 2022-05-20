@@ -1,6 +1,5 @@
 # PMon-5G
 This project intends to proposed a monitoring system for virtualized radio functions allocation based on the PlaceRAN solution.
-
 - [Setting up the environment](#setting-up-the-environment)
  	- [Operational System](#operational-system)
 	- [Kernel Prerequisites](#kernel-prerequisites)
@@ -24,6 +23,18 @@ This project intends to proposed a monitoring system for virtualized radio funct
 	- [Monitor Calico with Prometheus Operator](#monitor-calico-with-prometheus-operator)
 
 - [Observability Stack](#observability-stack)
+
+# Repository Organization
+
+## Data
+Here is disponible the collected Data from Enviroment.
+
+- [Images](Extras/Images)
+- [Logs](Extras/Logs)
+- [Metrics](Extras/Images)
+
+## Observability
+[Here](Observability) is disponible the experiments.
 
 ## Setting up the environment
 To set up our environment we need to follow some initial steps. 
@@ -102,7 +113,7 @@ sudo xl list
 ```
 
 In the experiment that we are exemplifying, we used the following figure as a basis for the topology:
-![ScreenShot](https://github.com/LABORA-INF-UFG/PMon-5G/blob/main/vran_line_topology%20.jpg)
+![ScreenShot](Extras/Images/vran_line_topology.jpg)
 
 ## Configuring Kubernetes
 
@@ -458,4 +469,4 @@ Don't forget to port foward the Grafana's port too.
  ## Observability Stack
 
 
-![ScreenShot](https://github.com/my5G/PMon-5G/blob/main/Extras/Images/observability-open-architecture.jpg)
+![ScreenShot](Extras/Images/observability-open-architecture.jpg)
