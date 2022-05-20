@@ -31,7 +31,7 @@ Here is disponible the collected Data from Enviroment.
 
 - [Images](Extras/Images)
 - [Logs](Extras/Logs)
-- [Metrics](Extras/Images)
+- [Metrics](Extras/Metrics)
 
 ## Observability
 [Here](Observability) is disponible the experiments.
