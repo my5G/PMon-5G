@@ -1,0 +1,14 @@
+Service_Metric,Average_Total
+prom_mem_usage,886361037.0
+vnf_mem_usage,496857403.0769231
+prom_cpu_usage,0.09792646157139194
+vnf_cpu_usage,1.3089246923076925
+kube_cpu_usage,0.4664571428571428
+kube_mem_usage,574528087.5142
+flu_mem_usage,692144076.3428125
+esk_mem_usage,5280011936.538066
+flu_cpu_usage,0.05070244293356971
+esk_cpu_usage,0.36457045552524897
+cnot_cpu_usage,0.5131993600302106
+cnot_mem_usage,6858517049.880878
+```
